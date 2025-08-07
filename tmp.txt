@@ -1,0 +1,192 @@
+<template>
+  <div class="w-60 flex-shrink-0 bg-white border-r border-gray-200 flex flex-col h-screen sticky top-0">
+    <!-- 头部Logo -->
+    <div class="p-4 border-b border-gray-200">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 flex items-center justify-center">
+          <img src="https://static.readdy.ai/image/e63be50cad32a704e861a8c97ea7ead7/4178781cf84e327c14297181913f2d14.png" alt="正宁社区" class="w-full h-full object-contain">
+        </div>
+        <span class="text-lg font-semibold text-gray-800">正宁社区</span>
+      </div>
+    </div>
+
+    <!-- 导航菜单 -->
+    <div class="flex-1 overflow-y-auto custom-scrollbar">
+      <div class="py-2 px-3 text-xs font-medium text-gray-500 uppercase">OVERVIEW</div>
+      <div class="space-y-1 px-3 py-2">
+        <!-- 课程创建 -->
+        <a 
+          href="#/lessoncreate" 
+          class="flex items-center gap-2 px-3 py-2 text-gray-700 rounded-md hover:bg-primary/10 hover:text-primary transition-colors duration-200"
+          :class="{ 'router-link-active router-link-exact-active': isActive('#/lessoncreate') }"
+        >
+          <i class="ri-file-list-line text-lg"></i>
+          <span>课程创建</span>
+        </a>
+
+        <!-- 子模块容器 -->
+        <div class="ml-4 space-y-1">
+          <!-- 项目情景生成器 -->
+          <a 
+            href="#/scenegenerator" 
+            class="flex items-center gap-2 px-3 py-1.5 text-sm rounded-md hover:bg-primary/10 hover:text-primary transition-colors duration-200"
+            :class="{ 
+              'text-primary bg-primary/5': isActive('#/scenegenerator'),
+              'text-gray-600': !isActive('#/scenegenerator')
+            }"
+            :aria-current="isActive('#/scenegenerator') ? 'page' : null"
+          >
+            <i class="ri-flashlight-line"></i>
+            <span>项目情景生成器</span>
+          </a>
+
+          <!-- 四阶段活动设计器 -->
+          <a 
+            href="#" 
+            class="flex items-center gap-2 px-3 py-1.5 text-sm rounded-md hover:bg-primary/10 hover:text-primary transition-colors duration-200"
+            :class="{ 
+              'text-primary bg-primary/5': isActive('#/four-stage'), // 假设四阶段路由是 #/four-stage，需替换实际路由
+              'text-gray-600': !isActive('#/four-stage')
+            }"
+            :aria-current="isActive('#/four-stage') ? 'page' : null"
+          >
+            <i class="ri-stack-line"></i>
+            <span>四阶段活动设计器</span>
+          </a>
+
+          <!-- 教师个人资料库 -->
+          <a 
+            href="#" 
+            class="flex items-center gap-2 px-3 py-1.5 text-sm rounded-md hover:bg-primary/10 hover:text-primary transition-colors duration-200"
+            :class="{ 
+              'text-primary bg-primary/5': isActive('#/teacher-profile'), // 假设教师资料库路由是 #/teacher-profile，需替换实际路由
+              'text-gray-600': !isActive('#/teacher-profile')
+            }"
+            :aria-current="isActive('#/teacher-profile') ? 'page' : null"
+          >
+            <i class="ri-user-line"></i>
+            <span>教师个人资料库</span>
+          </a>
+        </div>
+
+        <!-- 资源管理 -->
+        <a 
+          href="#/resources" 
+          class="flex items-center gap-2 px-3 py-2 text-gray-700 rounded-md hover:bg-gray-100"
+          :class="{ 'router-link-active router-link-exact-active': isActive('#/resources') }"
+        >
+          <i class="ri-folder-line text-lg"></i>
+          <span>资源管理</span>
+          <span class="ml-auto bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">2</span>
+        </a>
+
+        <!-- 协作共享 -->
+        <a 
+          href="#" 
+          class="flex items-center gap-2 px-3 py-2 text-gray-700 rounded-md hover:bg-gray-100"
+          :class="{ 'router-link-active router-link-exact-active': isActive('#/collaboration') }" // 假设协作共享路由是 #/collaboration，需替换实际路由
+        >
+          <i class="ri-share-line text-lg"></i>
+          <span>协作共享</span>
+        </a>
+
+        <!-- 个人信息 -->
+        <a 
+          href="#" 
+          class="flex items-center gap-2 px-3 py-2 text-gray-700 rounded-md hover:bg-gray-100"
+          :class="{ 'router-link-active router-link-exact-active': isActive('#/profile') }" // 假设个人信息路由是 #/profile，需替换实际路由
+        >
+          <i class="ri-user-line text-lg"></i>
+          <span>个人信息</span>
+          <span class="ml-auto bg-gray-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">5</span>
+        </a>
+
+        <!-- 管理总端 -->
+        <a 
+          href="#" 
+          class="flex items-center gap-2 px-3 py-2 text-gray-700 rounded-md hover:bg-gray-100"
+          :class="{ 'router-link-active router-link-exact-active': isActive('#/dashboard') }" // 假设管理总端路由是 #/dashboard，需替换实际路由
+        >
+          <i class="ri-dashboard-line text-lg"></i>
+          <span>管理总端</span>
+          <div class="ml-auto w-2 h-2 bg-primary rounded-full"></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 小工具部分 -->
+    <div class="p-3 border-t border-gray-200">
+      <div class="text-xs font-medium text-gray-500 mb-2">小工具</div>
+      <div class="grid grid-cols-5 gap-2">
+        <button class="tool-btn aspect-square bg-gray-100 rounded-md flex items-center justify-center text-gray-700 hover:bg-gray-200 hover:text-primary transition-all group relative">
+          <i class="ri-file-text-line"></i>
+          <div class="tooltip opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-800 text-white text-xs rounded whitespace-nowrap transition-all"> 文件管理 </div>
+        </button>
+        <button class="tool-btn aspect-square bg-gray-100 rounded-md flex items-center justify-center text-gray-700 hover:bg-gray-200 hover:text-primary transition-all group relative">
+          <i class="ri-share-forward-line"></i>
+          <div class="tooltip opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-800 text-white text-xs rounded whitespace-nowrap transition-all"> 分享 </div>
+        </button>
+        <button class="tool-btn aspect-square bg-gray-100 rounded-md flex items-center justify-center text-gray-700 hover:bg-gray-200 hover:text-primary transition-all group relative">
+          <i class="ri-robot-line"></i>
+          <div class="tooltip opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-800 text-white text-xs rounded whitespace-nowrap transition-all"> AI助手 </div>
+        </button>
+        <button class="tool-btn aspect-square bg-gray-100 rounded-md flex items-center justify-center text-gray-700 hover:bg-gray-200 hover:text-primary transition-all group relative">
+          <i class="ri-settings-line"></i>
+          <div class="tooltip opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-800 text-white text-xs rounded whitespace-nowrap transition-all"> 设置 </div>
+        </button>
+        <button class="tool-btn aspect-square bg-gray-100 rounded-md flex items-center justify-center text-gray-700 hover:bg-gray-200 hover:text-primary transition-all group relative">
+          <i class="ri-palette-line theme-icon"></i>
+          <div class="tooltip opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-800 text-white text-xs rounded whitespace-nowrap transition-all"> 主题切换 </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- 添加新文件按钮 -->
+    <div class="p-3 border-t border-gray-200">
+      <div class="bg-gray-100 rounded-lg p-4 flex flex-col items-center justify-center cursor-pointer hover:bg-gray-200 transition-all" id="createFileBtn">
+        <div class="w-10 h-10 bg-[#3DD598] rounded-full flex items-center justify-center text-white mb-2">
+          <i class="ri-add-line text-lg"></i>
+        </div>
+        <div class="text-sm font-medium text-gray-800 text-center">添加新的文件</div>
+        <div class="text-xs text-gray-500 text-center mt-1">点击新建文件</div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import { defineComponent, useRoute, computed } from 'vue';
+
+export default defineComponent({
+  name: 'Sidebar',
+  setup() {
+    const route = useRoute();
+
+    // 检测当前路由是否匹配目标路径
+    const isActive = (targetPath) => {
+      return route.fullPath === targetPath;
+    };
+
+    return {
+      isActive
+    };
+  }
+});
+</script>
+
+<style scoped>
+/* 自定义滚动条样式（若需要） */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+</style>
